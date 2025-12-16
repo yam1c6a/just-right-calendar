@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#D32F2F"
+                android:textColor="@color/calendar_sunday_text"
                 android:textSize="@dimen/mark_text_default_size"
                 android:textStyle="bold"
                 android:includeFontPadding="false"

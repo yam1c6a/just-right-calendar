@@ -72,16 +72,16 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                     val isHoliday = isUserHoliday || holidays.containsKey(date) || date.dayOfWeek == DayOfWeek.SUNDAY
                     val isSaturday = date.dayOfWeek == DayOfWeek.SATURDAY
                     val textColor = when {
-                        isHoliday -> ContextCompat.getColor(context, R.color.holiday_red)
-                        isSaturday -> ContextCompat.getColor(context, R.color.saturday_blue)
-                        else -> ContextCompat.getColor(context, R.color.text_primary)
+                        isHoliday -> ContextCompat.getColor(context, R.color.calendar_holiday_bg)
+                        isSaturday -> ContextCompat.getColor(context, R.color.calendar_saturday_bg)
+                        else -> ContextCompat.getColor(context, R.color.widget_text_primary)
                     }
                     views.setTextColor(dayViewId, textColor)
 
                     val backgroundColor = if (date == today) {
-                        ContextCompat.getColor(context, R.color.today_green)
+                        ContextCompat.getColor(context, R.color.widget_today_bg)
                     } else {
-                        ContextCompat.getColor(context, R.color.white)
+                        ContextCompat.getColor(context, R.color.widget_day_bg)
                     }
                     views.setInt(dayViewId, "setBackgroundColor", backgroundColor)
 
@@ -99,8 +99,8 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                     views.setOnClickPendingIntent(dayViewId, pendingDetail)
                 } else {
                     views.setTextViewText(dayViewId, "")
-                    views.setTextColor(dayViewId, ContextCompat.getColor(context, R.color.text_primary))
-                    views.setInt(dayViewId, "setBackgroundColor", ContextCompat.getColor(context, R.color.surface_background))
+                    views.setTextColor(dayViewId, ContextCompat.getColor(context, R.color.widget_text_primary))
+                    views.setInt(dayViewId, "setBackgroundColor", ContextCompat.getColor(context, R.color.widget_bg))
                     views.setOnClickPendingIntent(dayViewId, openMainIntent)
                 }
             }
