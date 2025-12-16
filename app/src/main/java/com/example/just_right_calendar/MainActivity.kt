@@ -11,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -28,16 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         CalendarRepository.initialize(applicationContext)
         setContentView(R.layout.activity_main)
-
-        val toolbar: Toolbar = findViewById(R.id.topAppBar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.title = ""
-        supportActionBar?.subtitle = ""
-        toolbar.title = ""
-        toolbar.subtitle = ""
-        val toolbarTitle = toolbar.findViewById<TextView>(R.id.toolbarTitle)
-        toolbarTitle.text = getString(R.string.app_name)
 
         calendarGrid = findViewById(R.id.calendarGrid)
         monthLabel = findViewById(R.id.monthLabel)
@@ -64,15 +53,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         renderCalendar()
-    }
-
-    override fun onPostResume() {
-        super.onPostResume()
-        val toolbar: Toolbar = findViewById(R.id.topAppBar)
-        toolbar.title = ""
-        toolbar.subtitle = ""
-        supportActionBar?.title = ""
-        supportActionBar?.subtitle = ""
     }
 
     override fun onResume() {
