@@ -48,15 +48,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|bottom"
-        android:paddingBottom="8dp"
+        android:paddingBottom="@dimen/mark_bottom_padding"
         android:textColor="#D32F2F"
-        android:textSize="32sp"
+        android:textSize="@dimen/mark_text_default_size"
         android:textStyle="bold"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="18sp"
-        android:autoSizeMaxTextSize="54sp"
+        android:autoSizeMinTextSize="16sp"
+        android:autoSizeMaxTextSize="48sp"
         android:autoSizeStepGranularity="2sp" />
 
 </FrameLayout>

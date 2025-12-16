@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="mark_bottom_padding">10dp</dimen>
+    <dimen name="mark_bottom_margin">6dp</dimen>
+    <dimen name="mark_text_default_size">29sp</dimen>
+</resources>
