@@ -9,8 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="holiday_red">#F5B8B8</color>
-    <color name="saturday_blue">#E8F0FF</color>
-    <color name="today_pink">#FFE8EE</color>
+    <color name="saturday_blue">#A7C7FF</color>
+    <color name="today_green">#E0F5E0</color>
     <color name="text_primary">#333333</color>
     <color name="text_secondary">#666666</color>
     <color name="surface_background">#FAFAFA</color>
