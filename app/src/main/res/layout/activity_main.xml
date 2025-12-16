@@ -70,13 +70,15 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_today_button"
                     android:backgroundTint="@null"
-                    android:paddingStart="11dp"
-                    android:paddingEnd="11dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
                     android:text="@string/today"
                     android:textColor="@color/text_on_button"
-                    android:textSize="11sp"
+                    android:textSize="10sp"
                     android:elevation="2dp" />
             </LinearLayout>
 
