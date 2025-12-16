@@ -152,7 +152,8 @@ class MainActivity : AppCompatActivity() {
 
         dayNumber.text = date.dayOfMonth.toString()
 
-        val isHoliday = holidays.containsKey(date) || date.dayOfWeek == DayOfWeek.SUNDAY
+        val isUserHoliday = CalendarRepository.isUserHoliday(date)
+        val isHoliday = isUserHoliday || holidays.containsKey(date) || date.dayOfWeek == DayOfWeek.SUNDAY
         val isSaturday = date.dayOfWeek == DayOfWeek.SATURDAY
 
         val topColor = when {

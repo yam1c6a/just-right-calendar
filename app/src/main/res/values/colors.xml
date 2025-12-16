@@ -17,5 +17,6 @@
     <color name="input_background">#FFFFFFFF</color>
     <color name="cell_border">#FFEFEFEF</color>
     <color name="button_tint">#FFB0BEC5</color>
+    <color name="button_tint_pressed">#FFA7B6BE</color>
     <color name="text_on_button">#FF111111</color>
 </resources>

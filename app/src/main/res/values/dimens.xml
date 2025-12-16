@@ -2,4 +2,5 @@
     <dimen name="mark_bottom_padding">0dp</dimen>
     <dimen name="mark_bottom_margin">-4dp</dimen>
     <dimen name="mark_text_default_size">29sp</dimen>
+    <dimen name="day_bottom_area_height">32dp</dimen>
 </resources>
