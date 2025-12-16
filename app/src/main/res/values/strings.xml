@@ -16,4 +16,7 @@
     <string name="custom_holiday_hint">名称 (任意)</string>
     <string name="save">保存</string>
     <string name="month_format">%1$d年%2$d月</string>
+    <string name="discard_changes_title">編集内容を破棄しますか？</string>
+    <string name="discard_changes_message">保存せずに前の画面へ戻ります。</string>
+    <string name="discard">破棄する</string>
 </resources>

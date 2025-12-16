@@ -38,13 +38,15 @@
             android:id="@+id/memoInput"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:gravity="top"
+            android:gravity="top|start"
             android:background="@drawable/input_background"
             android:padding="12dp"
             android:textColor="@color/text_primary"
             android:textColorHint="@color/text_secondary"
             android:hint="@string/memo_hint"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|textCapSentences|textImeMultiLine"
+            android:singleLine="false"
+            android:scrollHorizontally="false"
             android:layout_marginBottom="16dp" />
 
         <LinearLayout
