@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.topAppBar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = getString(R.string.app_name)
-        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbar.title = getString(R.string.app_name)
 
         calendarGrid = findViewById(R.id.calendarGrid)
         monthLabel = findViewById(R.id.monthLabel)
