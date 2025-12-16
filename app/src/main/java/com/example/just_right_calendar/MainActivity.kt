@@ -143,8 +143,8 @@ class MainActivity : AppCompatActivity() {
         bottomArea.setBackgroundColor(bottomColor)
 
         val marks = CalendarRepository.getMarks(date)
-        val markSymbols = marks.joinToString("") { it.symbol }
-        markText.text = markSymbols
+        val markSymbol = marks.firstOrNull()?.symbol.orEmpty()
+        markText.text = markSymbol
         markText.visibility = if (marks.isEmpty()) View.GONE else View.VISIBLE
 
         view.setOnClickListener {
