@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">just-right-calendar</string>
+    <string name="app_name">ちょうどいいカレンダー</string>
+    <string name="prev_month">前の月へ</string>
+    <string name="next_month">次の月へ</string>
+    <string name="today">今日</string>
+    <string name="monday">月</string>
+    <string name="tuesday">火</string>
+    <string name="wednesday">水</string>
+    <string name="thursday">木</string>
+    <string name="friday">金</string>
+    <string name="saturday">土</string>
+    <string name="sunday">日</string>
+    <string name="memo_label">メモ</string>
+    <string name="memo_hint">この日に残したいメモを入力してください</string>
+    <string name="custom_holiday_label">独自の休み</string>
+    <string name="custom_holiday_hint">名称 (任意)</string>
+    <string name="save">保存</string>
+    <string name="month_format">%1$d年%2$d月</string>
 </resources>
