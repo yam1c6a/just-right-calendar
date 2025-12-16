@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.appbar.MaterialToolbar
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var calendarGrid: GridLayout
     private lateinit var monthLabel: TextView
+    private lateinit var toolbar: MaterialToolbar
     private var currentYearMonth: YearMonth = YearMonth.now()
     private val today: LocalDate = LocalDate.now()
 
@@ -28,8 +30,14 @@ class MainActivity : AppCompatActivity() {
         CalendarRepository.initialize(applicationContext)
         setContentView(R.layout.activity_main)
 
+        toolbar = findViewById(R.id.topAppBar)
         calendarGrid = findViewById(R.id.calendarGrid)
         monthLabel = findViewById(R.id.monthLabel)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.title = ""
+        supportActionBar?.subtitle = ""
 
         findViewById<View>(R.id.prevButton).setOnClickListener {
             val message = "prev clicked: $currentYearMonth"
@@ -53,6 +61,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         renderCalendar()
+
+        toolbar.title = ""
+        toolbar.subtitle = ""
     }
 
     override fun onResume() {
