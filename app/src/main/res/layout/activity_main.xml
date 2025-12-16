@@ -70,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_today_button"
                     android:backgroundTint="@null"
+                    app:backgroundTint="@null"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:paddingStart="8dp"
