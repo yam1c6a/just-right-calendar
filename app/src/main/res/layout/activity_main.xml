@@ -18,138 +18,138 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <ImageButton
-                android:id="@+id/prevButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:padding="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:contentDescription="@string/prev_month"
-                android:src="@drawable/ic_chevron_left"
-                app:tint="@color/text_primary" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/monthLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:clickable="false"
-                android:gravity="center"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
+                <ImageButton
+                    android:id="@+id/prevButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/prev_month"
+                    android:src="@drawable/ic_chevron_left"
+                    app:tint="@color/text_primary" />
 
-            <ImageButton
-                android:id="@+id/nextButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:padding="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:contentDescription="@string/next_month"
-                android:src="@drawable/ic_chevron_right"
-                app:tint="@color/text_primary" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/monthLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:padding="4dp" />
 
-        <Button
-            android:id="@+id/todayButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/today"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/button_tint"
-            android:textColor="@color/text_on_button"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" />
+                <ImageButton
+                    android:id="@+id/nextButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/next_month"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_primary" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="4dp">
+            <Button
+                android:id="@+id/todayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/today"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/button_tint"
+                android:textColor="@color/text_on_button"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/monday"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/tuesday"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/wednesday"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/thursday"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/friday"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/saturday"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/sunday"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scrollbars="none">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/monday"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/tuesday"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/wednesday"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/thursday"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/friday"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/saturday"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/sunday"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
             <GridLayout
                 android:id="@+id/calendarGrid"
@@ -158,6 +158,6 @@
                 android:columnCount="7"
                 android:rowCount="6"
                 android:useDefaultMargins="true" />
-        </ScrollView>
-    </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

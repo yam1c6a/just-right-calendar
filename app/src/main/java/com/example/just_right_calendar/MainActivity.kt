@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -27,6 +28,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         CalendarRepository.initialize(applicationContext)
         setContentView(R.layout.activity_main)
+
+        val toolbar: Toolbar = findViewById(R.id.topAppBar)
+        setSupportActionBar(toolbar)
 
         calendarGrid = findViewById(R.id.calendarGrid)
         monthLabel = findViewById(R.id.monthLabel)
@@ -128,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         }
         topArea.setBackgroundColor(topColor)
 
-        val bottomColor = if (date == today) ContextCompat.getColor(this, R.color.today_pink) else Color.WHITE
+        val bottomColor = if (date == today) ContextCompat.getColor(this, R.color.today_green) else Color.WHITE
         bottomArea.setBackgroundColor(bottomColor)
 
         val memo = CalendarRepository.getMemo(date)
