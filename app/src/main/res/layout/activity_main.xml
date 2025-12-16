@@ -70,12 +70,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:padding="4dp"
-                    android:layout_marginStart="4dp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_marginStart="12dp" />
 
                 <Button
                     android:id="@+id/todayButton"
@@ -86,7 +81,13 @@
                     android:textColor="@color/text_on_button"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <ImageButton
                     android:id="@+id/nextButton"

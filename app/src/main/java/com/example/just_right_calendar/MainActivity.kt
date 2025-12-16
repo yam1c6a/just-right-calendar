@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.title = ""
+        supportActionBar?.subtitle = ""
         toolbar.title = ""
+        toolbar.subtitle = ""
 
         calendarGrid = findViewById(R.id.calendarGrid)
         monthLabel = findViewById(R.id.monthLabel)
