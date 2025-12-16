@@ -1,143 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@color/surface_background">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/prevButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/prev_month"
-            android:src="@drawable/ic_chevron_left"
-            app:tint="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/monthLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:padding="4dp" />
-
-        <ImageButton
-            android:id="@+id/nextButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/next_month"
-            android:src="@drawable/ic_chevron_right"
-            app:tint="@color/text_primary" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/todayButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/today"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/button_tint"
-        android:textColor="@color/text_on_button"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="4dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/monday"
-            android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/tuesday"
-            android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/wednesday"
-            android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/thursday"
-            android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/friday"
-            android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/saturday"
-            android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/sunday"
-            android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="none">
-
-        <GridLayout
-            android:id="@+id/calendarGrid"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="7"
-            android:rowCount="6"
-            android:useDefaultMargins="true" />
-    </ScrollView>
-</LinearLayout>
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/prevButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/prev_month"
+                android:src="@drawable/ic_chevron_left"
+                app:tint="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/monthLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:gravity="center"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="4dp" />
+
+            <ImageButton
+                android:id="@+id/nextButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/next_month"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/text_primary" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/todayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/today"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/button_tint"
+            android:textColor="@color/text_on_button"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/monday"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/tuesday"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/wednesday"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/thursday"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/friday"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/saturday"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/sunday"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <GridLayout
+                android:id="@+id/calendarGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="7"
+                android:rowCount="6"
+                android:useDefaultMargins="true" />
+        </ScrollView>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
