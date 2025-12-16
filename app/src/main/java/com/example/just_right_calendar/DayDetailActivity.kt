@@ -73,6 +73,7 @@ class DayDetailActivity : AppCompatActivity() {
         saveButton.setOnClickListener {
             CalendarRepository.saveMarks(date, collectSelectedMarks())
             CalendarRepository.saveHoliday(date, collectHolidayFlag())
+            CalendarWidgetProvider.requestUpdate(applicationContext)
             finish()
         }
     }
