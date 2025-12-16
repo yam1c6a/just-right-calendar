@@ -45,10 +45,11 @@
 
     <TextView
         android:id="@+id/markText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal|bottom"
-        android:paddingBottom="@dimen/mark_bottom_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="@dimen/mark_bottom_margin"
+        android:gravity="center"
         android:textColor="#D32F2F"
         android:textSize="@dimen/mark_text_default_size"
         android:textStyle="bold"
