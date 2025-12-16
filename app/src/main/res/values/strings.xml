@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ちょうどいいカレンダー</string>
-    <string name="prev_month">前の月へ</string>
-    <string name="next_month">次の月へ</string>
+    <string name="prev_month">前の月</string>
+    <string name="next_month">次の月</string>
     <string name="today">今日</string>
     <string name="monday">月</string>
     <string name="tuesday">火</string>
