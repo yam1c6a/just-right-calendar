@@ -68,11 +68,15 @@
                     android:id="@+id/todayButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/button_tint"
+                    android:background="@drawable/bg_today_button"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
                     android:text="@string/today"
-                    android:textColor="@color/text_on_button" />
+                    android:textColor="@color/text_on_button"
+                    android:textSize="12sp"
+                    android:elevation="3dp" />
             </LinearLayout>
 
             <ImageButton

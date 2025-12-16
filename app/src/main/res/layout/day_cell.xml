@@ -39,13 +39,13 @@
         android:paddingBottom="4dp">
 
         <TextView
-            android:id="@+id/memoText"
+            android:id="@+id/markText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:textColor="@color/text_primary"
             android:textSize="12sp"
-            android:maxLines="2"
-            android:ellipsize="end" />
+            android:maxLines="1" />
     </LinearLayout>
 
 </LinearLayout>

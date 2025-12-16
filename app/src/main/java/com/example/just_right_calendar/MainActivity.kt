@@ -125,11 +125,11 @@ class MainActivity : AppCompatActivity() {
         val topArea = view.findViewById<LinearLayout>(R.id.dayTopArea)
         val bottomArea = view.findViewById<LinearLayout>(R.id.dayBottomArea)
         val dayNumber = view.findViewById<TextView>(R.id.dayNumber)
-        val memoText = view.findViewById<TextView>(R.id.memoText)
+        val markText = view.findViewById<TextView>(R.id.markText)
 
         dayNumber.text = date.dayOfMonth.toString()
 
-        val isHoliday = holidays.containsKey(date) || CalendarRepository.getCustomHoliday(date) != null || date.dayOfWeek == DayOfWeek.SUNDAY
+        val isHoliday = holidays.containsKey(date) || date.dayOfWeek == DayOfWeek.SUNDAY
         val isSaturday = date.dayOfWeek == DayOfWeek.SATURDAY
 
         val topColor = when {
@@ -142,9 +142,10 @@ class MainActivity : AppCompatActivity() {
         val bottomColor = if (date == today) ContextCompat.getColor(this, R.color.today_green) else Color.WHITE
         bottomArea.setBackgroundColor(bottomColor)
 
-        val memo = CalendarRepository.getMemo(date)
-        memoText.text = memo ?: ""
-        memoText.visibility = if (memo.isNullOrBlank()) View.GONE else View.VISIBLE
+        val marks = CalendarRepository.getMarks(date)
+        val markSymbols = marks.joinToString("") { it.symbol }
+        markText.text = markSymbols
+        markText.visibility = if (marks.isEmpty()) View.GONE else View.VISIBLE
 
         view.setOnClickListener {
             val intent = Intent(this, DayDetailActivity::class.java).apply {
