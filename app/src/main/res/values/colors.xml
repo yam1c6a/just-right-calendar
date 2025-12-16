@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="holiday_red">#FFF1E6</color>
+    <color name="saturday_blue">#E8F0FF</color>
+    <color name="today_pink">#FFF5F7</color>
+    <color name="text_primary">#333333</color>
+    <color name="text_secondary">#666666</color>
+    <color name="surface_background">#FAFAFA</color>
+    <color name="input_background">#FFFFFFFF</color>
+    <color name="cell_border">#FFEFEFEF</color>
+    <color name="button_tint">#FFB0BEC5</color>
+    <color name="text_on_button">#FF111111</color>
 </resources>
