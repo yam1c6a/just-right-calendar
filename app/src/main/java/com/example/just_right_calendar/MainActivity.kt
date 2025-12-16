@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createEmptyCell(): View {
         val inflater = LayoutInflater.from(this)
-        val view = inflater.inflate(R.layout.day_cell, calendarGrid, false) as LinearLayout
+        val view = inflater.inflate(R.layout.day_cell, calendarGrid, false)
         val params = GridLayout.LayoutParams().apply {
             width = 0
             height = GridLayout.LayoutParams.WRAP_CONTENT
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createDayCell(date: LocalDate, holidays: Map<LocalDate, String>): View {
         val inflater = LayoutInflater.from(this)
-        val view = inflater.inflate(R.layout.day_cell, calendarGrid, false) as LinearLayout
+        val view = inflater.inflate(R.layout.day_cell, calendarGrid, false)
         val params = GridLayout.LayoutParams().apply {
             width = 0
             height = GridLayout.LayoutParams.WRAP_CONTENT
