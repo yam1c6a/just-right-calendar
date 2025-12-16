@@ -1,5 +1,5 @@
 <resources>
     <dimen name="mark_bottom_padding">0dp</dimen>
-    <dimen name="mark_bottom_margin">5dp</dimen>
+    <dimen name="mark_bottom_margin">9.5dp</dimen>
     <dimen name="mark_text_default_size">29sp</dimen>
 </resources>
