@@ -3,11 +3,13 @@ package com.example.just_right_calendar
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import java.time.DayOfWeek
@@ -30,11 +32,17 @@ class MainActivity : AppCompatActivity() {
         monthLabel = findViewById(R.id.monthLabel)
 
         findViewById<View>(R.id.prevButton).setOnClickListener {
+            val message = "prev clicked: $currentYearMonth"
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            Log.d("JRC", message)
             currentYearMonth = currentYearMonth.minusMonths(1)
             renderCalendar()
         }
 
         findViewById<View>(R.id.nextButton).setOnClickListener {
+            val message = "next clicked: $currentYearMonth"
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            Log.d("JRC", message)
             currentYearMonth = currentYearMonth.plusMonths(1)
             renderCalendar()
         }
@@ -53,23 +61,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun renderCalendar() {
-        monthLabel.text = getString(R.string.month_format, currentYearMonth.year, currentYearMonth.monthValue)
+        val yearMonth = currentYearMonth
+        monthLabel.text = getString(R.string.month_format, yearMonth.year, yearMonth.monthValue)
 
         calendarGrid.removeAllViews()
         calendarGrid.columnCount = 7
 
-        val firstDayOfMonth = currentYearMonth.atDay(1)
+        val firstDayOfMonth = yearMonth.atDay(1)
         val leadingEmpty = (firstDayOfMonth.dayOfWeek.value + 6) % 7
-        val daysInMonth = currentYearMonth.lengthOfMonth()
+        val daysInMonth = yearMonth.lengthOfMonth()
         val totalCells = ((leadingEmpty + daysInMonth + 6) / 7) * 7
         calendarGrid.rowCount = totalCells / 7
 
-        val holidays = JapaneseHolidayCalculator.holidaysForMonth(currentYearMonth)
+        val holidays = JapaneseHolidayCalculator.holidaysForMonth(yearMonth)
 
         for (i in 0 until totalCells) {
             val dayNumber = i - leadingEmpty + 1
             if (dayNumber in 1..daysInMonth) {
-                val date = currentYearMonth.atDay(dayNumber)
+                val date = yearMonth.atDay(dayNumber)
                 val cell = createDayCell(date, holidays)
                 calendarGrid.addView(cell)
             } else {
