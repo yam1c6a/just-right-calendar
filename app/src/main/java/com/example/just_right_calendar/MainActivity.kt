@@ -4,8 +4,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -126,6 +129,17 @@ class MainActivity : AppCompatActivity() {
         val bottomArea = view.findViewById<LinearLayout>(R.id.dayBottomArea)
         val dayNumber = view.findViewById<TextView>(R.id.dayNumber)
         val markText = view.findViewById<TextView>(R.id.markText)
+
+        val markParams = markText.layoutParams
+        if (markParams is ViewGroup.MarginLayoutParams) {
+            markParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.mark_bottom_margin)
+            markText.layoutParams = markParams
+        }
+        val bottomPadding = resources.getDimensionPixelSize(R.dimen.mark_bottom_padding)
+        markText.setPadding(markText.paddingLeft, markText.paddingTop, markText.paddingRight, bottomPadding)
+        markText.gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
+        val markTextSize = resources.getDimension(R.dimen.mark_text_default_size)
+        markText.setTextSize(TypedValue.COMPLEX_UNIT_PX, markTextSize)
 
         dayNumber.text = date.dayOfMonth.toString()
 
