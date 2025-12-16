@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.topAppBar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.title = ""
+        supportActionBar?.subtitle = ""
         toolbar.title = ""
         toolbar.subtitle = ""
         val toolbarTitle = toolbar.findViewById<TextView>(R.id.toolbarTitle)
@@ -62,6 +64,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         renderCalendar()
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
+        val toolbar: Toolbar = findViewById(R.id.topAppBar)
+        toolbar.title = ""
+        toolbar.subtitle = ""
+        supportActionBar?.title = ""
+        supportActionBar?.subtitle = ""
     }
 
     override fun onResume() {
