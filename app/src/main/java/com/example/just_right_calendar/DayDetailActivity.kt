@@ -5,6 +5,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
+import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -22,6 +24,9 @@ class DayDetailActivity : AppCompatActivity() {
     private lateinit var customHolidaySwitch: Switch
     private lateinit var customHolidayName: EditText
     private lateinit var dayTypeLabel: TextView
+    private var originalMemo: String = ""
+    private var originalCustomHolidayEnabled: Boolean = false
+    private var originalCustomHolidayName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,9 +50,12 @@ class DayDetailActivity : AppCompatActivity() {
         dateLabel.text = date.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
 
         val memo = CalendarRepository.getMemo(date)
+        originalMemo = memo ?: ""
         memoInput.setText(memo)
 
         val customHoliday = CalendarRepository.getCustomHoliday(date)
+        originalCustomHolidayEnabled = customHoliday != null
+        originalCustomHolidayName = customHoliday ?: ""
         if (customHoliday != null) {
             customHolidaySwitch.isChecked = true
             customHolidayName.isEnabled = true
@@ -55,6 +63,10 @@ class DayDetailActivity : AppCompatActivity() {
         }
 
         updateDayTypeLabel()
+
+        onBackPressedDispatcher.addCallback(this) {
+            handleBackNavigation()
+        }
 
         customHolidaySwitch.setOnCheckedChangeListener { _, isChecked ->
             customHolidayName.isEnabled = isChecked
@@ -69,6 +81,35 @@ class DayDetailActivity : AppCompatActivity() {
             CalendarRepository.setCustomHoliday(date, customHolidaySwitch.isChecked, customHolidayName.text?.toString())
             finish()
         }
+    }
+
+    private fun handleBackNavigation() {
+        if (hasUnsavedChanges()) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.discard_changes_title)
+                .setMessage(R.string.discard_changes_message)
+                .setPositiveButton(R.string.discard) { _, _ -> finish() }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
+        } else {
+            finish()
+        }
+    }
+
+    private fun hasUnsavedChanges(): Boolean {
+        val currentMemo = memoInput.text?.toString() ?: ""
+        val normalizedCurrentMemo = currentMemo.takeUnless { it.isBlank() } ?: ""
+        val normalizedOriginalMemo = originalMemo.takeUnless { it.isBlank() } ?: ""
+
+        val currentCustomHolidayEnabled = customHolidaySwitch.isChecked
+        val currentCustomHolidayName = customHolidayName.text?.toString()?.trim() ?: ""
+        val normalizedOriginalHolidayName = originalCustomHolidayName.trim()
+
+        if (normalizedCurrentMemo != normalizedOriginalMemo) return true
+        if (currentCustomHolidayEnabled != originalCustomHolidayEnabled) return true
+        if (currentCustomHolidayEnabled && currentCustomHolidayName != normalizedOriginalHolidayName) return true
+
+        return false
     }
 
     private fun updateDayTypeLabel() {
