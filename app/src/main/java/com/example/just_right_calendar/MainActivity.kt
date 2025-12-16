@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var calendarGrid: GridLayout
     private lateinit var monthLabel: TextView
-    private var currentYear: Int = YearMonth.now().year
-    private var currentMonth: Int = YearMonth.now().monthValue
+    private var currentYearMonth: YearMonth = YearMonth.now()
     private val today: LocalDate = LocalDate.now()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,29 +30,17 @@ class MainActivity : AppCompatActivity() {
         monthLabel = findViewById(R.id.monthLabel)
 
         findViewById<View>(R.id.prevButton).setOnClickListener {
-            if (currentMonth == 1) {
-                currentYear -= 1
-                currentMonth = 12
-            } else {
-                currentMonth -= 1
-            }
+            currentYearMonth = currentYearMonth.minusMonths(1)
             renderCalendar()
         }
 
         findViewById<View>(R.id.nextButton).setOnClickListener {
-            if (currentMonth == 12) {
-                currentYear += 1
-                currentMonth = 1
-            } else {
-                currentMonth += 1
-            }
+            currentYearMonth = currentYearMonth.plusMonths(1)
             renderCalendar()
         }
 
         findViewById<View>(R.id.todayButton).setOnClickListener {
-            val now = YearMonth.now()
-            currentYear = now.year
-            currentMonth = now.monthValue
+            currentYearMonth = YearMonth.now()
             renderCalendar()
         }
 
@@ -66,9 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun renderCalendar() {
-        monthLabel.text = getString(R.string.month_format, currentYear, currentMonth)
-
-        val currentYearMonth = YearMonth.of(currentYear, currentMonth)
+        monthLabel.text = getString(R.string.month_format, currentYearMonth.year, currentYearMonth.monthValue)
 
         calendarGrid.removeAllViews()
         calendarGrid.columnCount = 7
