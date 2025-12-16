@@ -1,7 +1,6 @@
 package com.example.just_right_calendar
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -157,13 +156,17 @@ class MainActivity : AppCompatActivity() {
         val isSaturday = date.dayOfWeek == DayOfWeek.SATURDAY
 
         val topColor = when {
-            isHoliday -> ContextCompat.getColor(this, R.color.holiday_red)
-            isSaturday -> ContextCompat.getColor(this, R.color.saturday_blue)
-            else -> Color.WHITE
+            isHoliday -> ContextCompat.getColor(this, R.color.calendar_holiday_bg)
+            isSaturday -> ContextCompat.getColor(this, R.color.calendar_saturday_bg)
+            else -> ContextCompat.getColor(this, R.color.calendar_default_day_bg)
         }
         topArea.setBackgroundColor(topColor)
 
-        val bottomColor = if (date == today) ContextCompat.getColor(this, R.color.today_green) else Color.WHITE
+        val bottomColor = if (date == today) {
+            ContextCompat.getColor(this, R.color.calendar_today_bg)
+        } else {
+            ContextCompat.getColor(this, R.color.calendar_default_day_bg)
+        }
         bottomArea.setBackgroundColor(bottomColor)
 
         val marks = CalendarRepository.getMarks(date)

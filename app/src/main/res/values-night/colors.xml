@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#BB86FC</color>
     <color name="colorPrimaryVariant">#3700B3</color>
-    <color name="colorOnPrimary">#FFFFFFFF</color>
+    <color name="colorOnPrimary">#FF000000</color>
     <color name="colorSecondary">#03DAC5</color>
-    <color name="colorSecondaryVariant">#018786</color>
+    <color name="colorSecondaryVariant">#03DAC5</color>
     <color name="colorOnSecondary">#FF000000</color>
 
-    <color name="text_primary">#333333</color>
-    <color name="text_secondary">#666666</color>
-    <color name="surface_background">#FAFAFA</color>
-    <color name="input_background">#FFFFFFFF</color>
-    <color name="cell_border">#FFEFEFEF</color>
-    <color name="button_tint">#FFB0BEC5</color>
-    <color name="button_tint_pressed">#FFA7B6BE</color>
-    <color name="text_on_button">#FF111111</color>
+    <color name="text_primary">#E0E0E0</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="surface_background">#121212</color>
+    <color name="input_background">#1E1E1E</color>
+    <color name="cell_border">#333333</color>
+    <color name="button_tint">#546E7A</color>
+    <color name="button_tint_pressed">#455A64</color>
+    <color name="text_on_button">#FFFFFFFF</color>
 
-    <color name="calendar_today_bg">#D6F2D6</color>
-    <color name="calendar_holiday_bg">#F5B8B8</color>
-    <color name="calendar_saturday_bg">#7FA6FF</color>
-    <color name="calendar_sunday_text">#D32F2F</color>
+    <color name="calendar_today_bg">#1B5E20</color>
+    <color name="calendar_holiday_bg">#5A2C2C</color>
+    <color name="calendar_saturday_bg">#1E3C78</color>
+    <color name="calendar_sunday_text">#EF5350</color>
     <color name="calendar_default_day_bg">@color/input_background</color>
 
     <color name="widget_bg">@color/surface_background</color>
