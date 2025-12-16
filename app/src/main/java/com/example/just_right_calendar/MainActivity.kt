@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -131,13 +132,21 @@ class MainActivity : AppCompatActivity() {
         val markText = view.findViewById<TextView>(R.id.markText)
 
         val markParams = markText.layoutParams
-        if (markParams is ViewGroup.MarginLayoutParams) {
-            markParams.bottomMargin = resources.getDimensionPixelSize(R.dimen.mark_bottom_margin)
-            markText.layoutParams = markParams
+        val bottomMargin = resources.getDimensionPixelSize(R.dimen.mark_bottom_margin)
+        when (markParams) {
+            is FrameLayout.LayoutParams -> {
+                markParams.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+                markParams.bottomMargin = bottomMargin
+                markText.layoutParams = markParams
+            }
+            is ViewGroup.MarginLayoutParams -> {
+                markParams.bottomMargin = bottomMargin
+                markText.layoutParams = markParams
+            }
         }
         val bottomPadding = resources.getDimensionPixelSize(R.dimen.mark_bottom_padding)
         markText.setPadding(markText.paddingLeft, markText.paddingTop, markText.paddingRight, bottomPadding)
-        markText.gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
+        markText.gravity = Gravity.CENTER
         val markTextSize = resources.getDimension(R.dimen.mark_text_default_size)
         markText.setTextSize(TypedValue.COMPLEX_UNIT_PX, markTextSize)
 
