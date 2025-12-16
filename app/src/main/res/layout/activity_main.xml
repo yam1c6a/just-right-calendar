@@ -15,7 +15,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="">
 
             <TextView
                 android:id="@+id/toolbarTitle"
@@ -60,16 +61,32 @@
 
                 <TextView
                     android:id="@+id/monthLabel"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:clickable="false"
                     android:focusable="false"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:textColor="@color/text_primary"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:padding="4dp" />
+                    android:padding="4dp"
+                    android:layout_marginStart="4dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/todayButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/today"
+                    android:backgroundTint="@color/button_tint"
+                    android:textColor="@color/text_on_button"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:layout_marginEnd="8dp" />
 
                 <ImageButton
                     android:id="@+id/nextButton"
@@ -83,19 +100,6 @@
                     android:src="@drawable/ic_chevron_right"
                     app:tint="@color/text_primary" />
             </LinearLayout>
-
-            <Button
-                android:id="@+id/todayButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/today"
-                android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/button_tint"
-                android:textColor="@color/text_on_button"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
