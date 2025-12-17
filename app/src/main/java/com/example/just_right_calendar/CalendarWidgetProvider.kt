@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
+import kotlin.math.abs
 
 class CalendarWidgetProvider : AppWidgetProvider() {
 
@@ -187,6 +188,7 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                     views.setViewVisibility(markId, if (markSymbol.isEmpty()) View.GONE else View.VISIBLE)
                     views.setTextColor(numberId, ContextCompat.getColor(context, R.color.text_primary))
 
+                    val detailRequestCode = appWidgetId * 100000 + (abs(date.hashCode()) % 100000)
                     val detailIntent = Intent(context, DayDetailActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK
                         putExtra(DayDetailActivity.EXTRA_DATE, date.toString())
@@ -194,7 +196,7 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                     }
                     val pendingDetail = PendingIntent.getActivity(
                         context,
-                        appWidgetId * 100 + index,
+                        detailRequestCode,
                         detailIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
