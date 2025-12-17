@@ -18,6 +18,7 @@ object CalendarRepository {
     }
 
     fun getMarks(date: LocalDate): Set<MarkType> {
+        if (!::prefs.isInitialized) throw IllegalStateException("CalendarRepository is not initialized")
         val raw = prefs.getString(marksKey(date), null) ?: return emptySet()
         return raw.split(',')
             .mapNotNull { MarkType.fromString(it.trim()) }

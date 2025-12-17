@@ -121,6 +121,11 @@ class CalendarWidgetProvider : AppWidgetProvider() {
             val dayNumberIds = buildIdArray(context, "Number")
             val dayMarkIds = buildIdArray(context, "Mark")
 
+            val idArrays = listOf(dayContainerIds, dayTopIds, dayBottomIds, dayNumberIds, dayMarkIds)
+            if (idArrays.any { array -> array.any { it == 0 } }) {
+                return
+            }
+
             val views = RemoteViews(context.packageName, R.layout.widget_calendar)
             val yearMonth = loadYearMonth(context, appWidgetId)
             val firstDayOfMonth = yearMonth.atDay(1)
