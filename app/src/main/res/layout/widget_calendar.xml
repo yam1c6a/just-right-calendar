@@ -1,570 +1,1589 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widgetRoot"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/widget_bg"
-    android:padding="12dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/widgetRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/widget_bg" android:padding="8dp">
+    
 
-    <TextView
-        android:id="@+id/widgetMonthLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/widget_text_primary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:paddingBottom="12dp" />
+    
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:paddingBottom="8dp">
+        
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        
+        <ImageButton android:id="@+id/widgetPrevButton" android:layout_width="36dp" android:layout_height="36dp" android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="@string/prev_month" android:padding="6dp" android:src="@drawable/ic_chevron_left" android:tint="@color/widget_text_primary"/>
+        
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
+        
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="horizontal" android:paddingStart="8dp" android:paddingEnd="8dp">
+            
 
-            <TextView
-                android:id="@+id/day1"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
+            
+            <TextView android:id="@+id/widgetMonthLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/widget_text_primary" android:textSize="18sp" android:textStyle="bold" android:layout_marginEnd="8dp"/>
+            
 
-            <TextView
-                android:id="@+id/day2"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day3"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day4"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day5"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day6"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day7"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
+            
+            <Button android:id="@+id/widgetTodayButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_today_button" android:backgroundTint="@null" android:paddingStart="8dp" android:paddingEnd="8dp" android:paddingTop="4dp" android:paddingBottom="4dp" android:text="@string/today" android:textColor="@color/text_on_button" android:textSize="10sp"/>
+            
+        
         </LinearLayout>
+        
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:id="@+id/day8"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day9"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day10"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day11"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day12"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day13"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day14"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:id="@+id/day15"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day16"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day17"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day18"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day19"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day20"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day21"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:id="@+id/day22"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day23"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day24"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day25"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day26"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day27"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day28"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:id="@+id/day29"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day30"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day31"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day32"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day33"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day34"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day35"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/day36"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day37"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day38"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day39"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day40"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day41"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/day42"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/widget_day_bg"
-                android:textColor="@color/widget_text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:padding="4dp" />
-        </LinearLayout>
+        
+        <ImageButton android:id="@+id/widgetNextButton" android:layout_width="36dp" android:layout_height="36dp" android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="@string/next_month" android:padding="6dp" android:src="@drawable/ic_chevron_right" android:tint="@color/widget_text_primary"/>
+        
+    
     </LinearLayout>
+    
+
+    
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingBottom="4dp">
+        
+
+        
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="@string/monday" android:textColor="@color/widget_text_secondary" android:textSize="10sp"/>
+        
+        
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="@string/tuesday" android:textColor="@color/widget_text_secondary" android:textSize="10sp"/>
+        
+        
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="@string/wednesday" android:textColor="@color/widget_text_secondary" android:textSize="10sp"/>
+        
+        
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="@string/thursday" android:textColor="@color/widget_text_secondary" android:textSize="10sp"/>
+        
+        
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="@string/friday" android:textColor="@color/widget_text_secondary" android:textSize="10sp"/>
+        
+        
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="@string/saturday" android:textColor="@color/calendar_saturday_bg" android:textSize="10sp"/>
+        
+        
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="@string/sunday" android:textColor="@color/calendar_sunday_text" android:textSize="10sp"/>
+        
+    
+    </LinearLayout>
+    
+
+    
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+        
+    
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+            
+
+        
+            <FrameLayout android:id="@+id/day1" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day1Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day1Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day1Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day1Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day2" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day2Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day2Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day2Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day2Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day3" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day3Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day3Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day3Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day3Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day4" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day4Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day4Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day4Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day4Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day5" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day5Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day5Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day5Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day5Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day6" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day6Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day6Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day6Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day6Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day7" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day7Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day7Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day7Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day7Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+    
+        </LinearLayout>
+        
+
+    
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+            
+
+        
+            <FrameLayout android:id="@+id/day8" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day8Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day8Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day8Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day8Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day9" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day9Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day9Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day9Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day9Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day10" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day10Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day10Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day10Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day10Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day11" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day11Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day11Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day11Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day11Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day12" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day12Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day12Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day12Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day12Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day13" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day13Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day13Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day13Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day13Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day14" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day14Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day14Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day14Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day14Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+    
+        </LinearLayout>
+        
+
+    
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+            
+
+        
+            <FrameLayout android:id="@+id/day15" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day15Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day15Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day15Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day15Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day16" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day16Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day16Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day16Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day16Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day17" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day17Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day17Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day17Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day17Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day18" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day18Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day18Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day18Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day18Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day19" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day19Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day19Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day19Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day19Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day20" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day20Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day20Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day20Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day20Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day21" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day21Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day21Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day21Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day21Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+    
+        </LinearLayout>
+        
+
+    
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+            
+
+        
+            <FrameLayout android:id="@+id/day22" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day22Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day22Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day22Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day22Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day23" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day23Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day23Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day23Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day23Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day24" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day24Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day24Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day24Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day24Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day25" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day25Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day25Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day25Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day25Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day26" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day26Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day26Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day26Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day26Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day27" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day27Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day27Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day27Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day27Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day28" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day28Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day28Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day28Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day28Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+    
+        </LinearLayout>
+        
+
+    
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+            
+
+        
+            <FrameLayout android:id="@+id/day29" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day29Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day29Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day29Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day29Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day30" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day30Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day30Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day30Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day30Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day31" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day31Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day31Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day31Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day31Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day32" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day32Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day32Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day32Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day32Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day33" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day33Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day33Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day33Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day33Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day34" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day34Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day34Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day34Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day34Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day35" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day35Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day35Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day35Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day35Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+    
+        </LinearLayout>
+        
+
+    
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            
+
+        
+            <FrameLayout android:id="@+id/day36" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day36Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day36Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day36Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day36Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day37" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day37Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day37Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day37Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day37Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day38" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day38Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day38Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day38Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day38Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day39" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day39Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day39Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day39Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day39Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day40" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day40Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day40Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day40Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day40Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day41" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day41Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day41Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day41Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day41Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+        
+            <FrameLayout android:id="@+id/day42" android:layout_width="0dp" android:layout_height="@dimen/widget_day_height" android:layout_weight="1" android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:background="@drawable/widget_day_container_bg">
+                
+
+            
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:weightSum="3">
+                    
+
+                
+                    <LinearLayout android:id="@+id/day42Top" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:paddingStart="4dp" android:paddingEnd="4dp" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day42Number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:textColor="@color/text_primary" android:textSize="14sp" android:textStyle="bold"/>
+                        
+                
+                    </LinearLayout>
+                    
+
+                
+                    <FrameLayout android:id="@+id/day42Bottom" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:paddingTop="4dp" android:paddingBottom="4dp">
+                        
+
+                    
+                        <TextView android:id="@+id/day42Mark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:gravity="center" android:textColor="@color/calendar_sunday_text" android:textSize="@dimen/widget_mark_text_size" android:textStyle="bold"/>
+                        
+                
+                    </FrameLayout>
+                    
+            
+                </LinearLayout>
+                
+        
+            </FrameLayout>
+            
+    
+        </LinearLayout>
+        
+
+    
+    </LinearLayout>
+    
+
 </LinearLayout>
