@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="mark_bottom_padding">0dp</dimen>
     <dimen name="mark_bottom_margin">-4dp</dimen>
