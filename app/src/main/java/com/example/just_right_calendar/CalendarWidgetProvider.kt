@@ -1,8 +1,10 @@
 package com.example.just_right_calendar
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
 import java.time.DayOfWeek
@@ -28,17 +30,6 @@ class CalendarWidgetProvider : AppWidgetProvider() {
             }
         }
         Log.d(TAG, "onUpdate end")
-    }
-
-    override fun onReceive(context: Context, intent: android.content.Intent) {
-        Log.d(TAG, "onReceive start action=${intent.action}")
-        try {
-            super.onReceive(context, intent)
-        } catch (e: Exception) {
-            Log.e(TAG, "onReceive error", e)
-            return
-        }
-        Log.d(TAG, "onReceive end action=${intent.action}")
     }
 
     override fun onAppWidgetOptionsChanged(
@@ -101,6 +92,15 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         val views = RemoteViews(packageName, R.layout.widget_calendar)
         val monthLabel = SimpleDateFormat("yyyy/MM", Locale.getDefault()).format(displayMonth.time)
         views.setTextViewText(R.id.widgetMonthLabel, monthLabel)
+
+        val launchIntent = Intent(context, MainActivity::class.java)
+        val launchPendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            launchIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+        views.setOnClickPendingIntent(R.id.widgetRoot, launchPendingIntent)
 
         repeat(42) { index ->
             val numberId = numberIds.getOrNull(index) ?: return@repeat
