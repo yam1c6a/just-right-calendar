@@ -20,6 +20,7 @@
     <color name="calendar_holiday_bg">#5A2C2C</color>
     <color name="calendar_saturday_bg">#1E3C78</color>
     <color name="calendar_sunday_text">#EF5350</color>
+    <color name="calendar_mark_text">#EF5350</color>
     <color name="calendar_default_day_bg">@color/input_background</color>
 
     <color name="widget_bg">@color/surface_background</color>
