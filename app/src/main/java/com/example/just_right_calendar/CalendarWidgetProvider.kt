@@ -5,6 +5,9 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.util.Log
 import android.widget.RemoteViews
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.YearMonth
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -78,15 +81,18 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         val packageName = context.packageName
         val numberIds = resolveIds(context, NUMBER_ID_PREFIX, NUMBER_ID_SUFFIX)
         val markIds = resolveIds(context, MARK_ID_PREFIX, MARK_ID_SUFFIX)
+        val topAreaIds = resolveIds(context, TOP_ID_PREFIX, TOP_ID_SUFFIX)
+        val bottomAreaIds = resolveIds(context, BOTTOM_ID_PREFIX, BOTTOM_ID_SUFFIX)
 
-        if (numberIds.isEmpty() || markIds.isEmpty()) {
+        if (numberIds.isEmpty() || markIds.isEmpty() || topAreaIds.isEmpty() || bottomAreaIds.isEmpty()) {
             Log.e(TAG, "Day view ids could not be resolved")
             return null
         }
 
         val calendar = Calendar.getInstance()
-        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
         val displayMonth = (calendar.clone() as Calendar).apply { set(Calendar.DAY_OF_MONTH, 1) }
+        val yearMonth = YearMonth.of(displayMonth.get(Calendar.YEAR), displayMonth.get(Calendar.MONTH) + 1)
+        val holidays = JapaneseHolidayCalculator.holidaysForMonth(yearMonth).keys
 
         val daysInMonth = displayMonth.getActualMaximum(Calendar.DAY_OF_MONTH)
         val startOffset = ((displayMonth.get(Calendar.DAY_OF_WEEK) + 5) % 7)
@@ -98,18 +104,41 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         repeat(42) { index ->
             val numberId = numberIds.getOrNull(index) ?: return@repeat
             val markId = markIds.getOrNull(index) ?: return@repeat
+            val topAreaId = topAreaIds.getOrNull(index) ?: return@repeat
+            val bottomAreaId = bottomAreaIds.getOrNull(index) ?: return@repeat
 
             val dayNumber = index - startOffset + 1
             if (dayNumber in 1..daysInMonth) {
-                views.setTextViewText(numberId, dayNumber.toString())
-                views.setTextViewText(markId, "")
-
-                if (dayNumber == currentDay) {
-                    views.setTextColor(numberId, context.getColor(R.color.widget_text_primary))
+                val date = yearMonth.atDay(dayNumber)
+                val dayOfWeek = date.dayOfWeek
+                val isHoliday = holidays.contains(date)
+                val isToday = date == LocalDate.now()
+                val topColor = when {
+                    isHoliday -> R.color.calendar_holiday_bg
+                    dayOfWeek == DayOfWeek.SUNDAY -> R.color.calendar_holiday_bg
+                    dayOfWeek == DayOfWeek.SATURDAY -> R.color.calendar_saturday_bg
+                    else -> R.color.widget_day_bg
                 }
+                val bottomColor = if (isToday) {
+                    R.color.widget_today_bg
+                } else {
+                    R.color.widget_day_bg
+                }
+                val textColor = when {
+                    isHoliday || dayOfWeek == DayOfWeek.SUNDAY -> R.color.calendar_sunday_text
+                    else -> R.color.widget_text_primary
+                }
+
+                views.setTextViewText(numberId, dayNumber.toString())
+                views.setTextColor(numberId, context.getColor(textColor))
+                views.setTextViewText(markId, "")
+                views.setInt(topAreaId, "setBackgroundColor", context.getColor(topColor))
+                views.setInt(bottomAreaId, "setBackgroundColor", context.getColor(bottomColor))
             } else {
                 views.setTextViewText(numberId, "")
                 views.setTextViewText(markId, "")
+                views.setInt(topAreaId, "setBackgroundColor", context.getColor(R.color.widget_day_bg))
+                views.setInt(bottomAreaId, "setBackgroundColor", context.getColor(R.color.widget_day_bg))
             }
         }
 
@@ -136,5 +165,9 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         private const val NUMBER_ID_SUFFIX = "Number"
         private const val MARK_ID_PREFIX = "day"
         private const val MARK_ID_SUFFIX = "Mark"
+        private const val TOP_ID_PREFIX = "day"
+        private const val TOP_ID_SUFFIX = "TopArea"
+        private const val BOTTOM_ID_PREFIX = "day"
+        private const val BOTTOM_ID_SUFFIX = "BottomArea"
     }
 }
