@@ -87,15 +87,12 @@ class MainActivity : AppCompatActivity() {
         val bottomArea = view.findViewById<LinearLayout>(R.id.dayBottomArea)
 
         val horizontalPadding = dpToPx(32f)
-        val metrics = resources.displayMetrics
-        val availableWidth = metrics.widthPixels - horizontalPadding
-        val availableHeight = metrics.heightPixels
-        val cellWidthPx = min(availableWidth / 7f, availableHeight / (6f * 1.5f))
+        val cellWidthPx = (resources.displayMetrics.widthPixels - horizontalPadding) / 7f
         val params = GridLayout.LayoutParams().apply {
-            width = cellWidthPx.toInt()
+            width = 0
             height = (cellWidthPx * 1.5f).toInt()
-            columnSpec = GridLayout.spec(GridLayout.UNDEFINED)
-            rowSpec = GridLayout.spec(GridLayout.UNDEFINED)
+            columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+            rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
         }
         view.layoutParams = params
 
