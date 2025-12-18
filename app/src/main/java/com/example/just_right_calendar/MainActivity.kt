@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             width = 0
             height = cellHeightPx
             columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-            rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+            rowSpec = GridLayout.spec(GridLayout.UNDEFINED)
         }
         view.layoutParams = params
 
