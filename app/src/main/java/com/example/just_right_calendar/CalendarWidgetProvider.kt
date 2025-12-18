@@ -16,10 +16,26 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray,
     ) {
+        Log.d(TAG, "onUpdate start ids=${appWidgetIds.joinToString()}")
         appWidgetIds.forEach { id ->
-            runCatching { updateWidget(context, appWidgetManager, id) }
-                .onFailure { Log.e(TAG, "Failed to update widget", it) }
+            try {
+                updateWidget(context, appWidgetManager, id)
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to update widget id=$id", e)
+            }
         }
+        Log.d(TAG, "onUpdate end")
+    }
+
+    override fun onReceive(context: Context, intent: android.content.Intent) {
+        Log.d(TAG, "onReceive start action=${intent.action}")
+        try {
+            super.onReceive(context, intent)
+        } catch (e: Exception) {
+            Log.e(TAG, "onReceive error", e)
+            return
+        }
+        Log.d(TAG, "onReceive end action=${intent.action}")
     }
 
     override fun onAppWidgetOptionsChanged(
@@ -29,8 +45,12 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         newOptions: android.os.Bundle,
     ) {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
-        runCatching { updateWidget(context, appWidgetManager, appWidgetId) }
-            .onFailure { Log.e(TAG, "Failed to update widget on options change", it) }
+        Log.d(TAG, "onAppWidgetOptionsChanged id=$appWidgetId options=$newOptions")
+        try {
+            updateWidget(context, appWidgetManager, appWidgetId)
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to update widget on options change", e)
+        }
     }
 
     private fun updateWidget(
@@ -38,15 +58,23 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetId: Int,
     ) {
-        val remoteViews = buildRemoteViews(context)
-        if (remoteViews != null) {
-            appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
-        } else {
-            Log.e(TAG, "RemoteViews could not be built; skipping update")
+        Log.d(TAG, "updateWidget start id=$appWidgetId")
+        try {
+            val remoteViews = buildRemoteViews(context)
+            if (remoteViews != null) {
+                appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
+                Log.d(TAG, "updateWidget success id=$appWidgetId")
+            } else {
+                Log.e(TAG, "RemoteViews could not be built; skipping update for id=$appWidgetId")
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Exception during updateAppWidget id=$appWidgetId", e)
         }
+        Log.d(TAG, "updateWidget end id=$appWidgetId")
     }
 
     private fun buildRemoteViews(context: Context): RemoteViews? {
+        Log.d(TAG, "buildRemoteViews start")
         val packageName = context.packageName
         val numberIds = resolveIds(context, NUMBER_ID_PREFIX, NUMBER_ID_SUFFIX)
         val markIds = resolveIds(context, MARK_ID_PREFIX, MARK_ID_SUFFIX)
@@ -85,6 +113,7 @@ class CalendarWidgetProvider : AppWidgetProvider() {
             }
         }
 
+        Log.d(TAG, "buildRemoteViews end")
         return views
     }
 
