@@ -54,7 +54,8 @@ class CalendarWidgetProvider : AppWidgetProvider() {
     ) {
         Log.d(TAG, "updateWidget start id=$appWidgetId")
         try {
-            val remoteViews = buildRemoteViews(context)
+            val monthOffset = loadMonthOffset(context, appWidgetId)
+            val remoteViews = buildRemoteViews(context, appWidgetId, monthOffset)
             if (remoteViews != null) {
                 appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
                 Log.d(TAG, "updateWidget success id=$appWidgetId")
@@ -67,7 +68,7 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         Log.d(TAG, "updateWidget end id=$appWidgetId")
     }
 
-    private fun buildRemoteViews(context: Context): RemoteViews? {
+    private fun buildRemoteViews(context: Context, appWidgetId: Int, monthOffset: Int): RemoteViews? {
         Log.d(TAG, "buildRemoteViews start")
         CalendarRepository.initialize(context.applicationContext)
         val packageName = context.packageName
@@ -81,7 +82,7 @@ class CalendarWidgetProvider : AppWidgetProvider() {
             return null
         }
 
-        val calendar = Calendar.getInstance()
+        val calendar = Calendar.getInstance().apply { add(Calendar.MONTH, monthOffset) }
         val displayMonth = (calendar.clone() as Calendar).apply { set(Calendar.DAY_OF_MONTH, 1) }
         val yearMonth = YearMonth.of(displayMonth.get(Calendar.YEAR), displayMonth.get(Calendar.MONTH) + 1)
         val holidays = JapaneseHolidayCalculator.holidaysForMonth(yearMonth).keys
@@ -163,6 +164,36 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         }
     }
 
+    private fun handleMonthChange(context: Context, intent: Intent) {
+        val widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+        if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+            Log.w(TAG, "Received month change without widget id")
+            return
+        }
+        val delta = when (intent.action) {
+            ACTION_PREVIOUS_MONTH -> -1
+            ACTION_NEXT_MONTH -> 1
+            else -> 0
+        }
+        val manager = AppWidgetManager.getInstance(context)
+        val currentOffset = loadMonthOffset(context, widgetId)
+        val newOffset = currentOffset + delta
+        saveMonthOffset(context, widgetId, newOffset)
+        updateWidget(context, manager, widgetId)
+    }
+
+    private fun loadMonthOffset(context: Context, appWidgetId: Int): Int {
+        val preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return preferences.getInt(monthOffsetKey(appWidgetId), 0)
+    }
+
+    private fun saveMonthOffset(context: Context, appWidgetId: Int, offset: Int) {
+        val preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        preferences.edit().putInt(monthOffsetKey(appWidgetId), offset).apply()
+    }
+
+    private fun monthOffsetKey(appWidgetId: Int): String = "${KEY_MONTH_OFFSET}_$appWidgetId"
+
     companion object {
         private const val TAG = "CalendarWidgetProvider"
         private const val NUMBER_ID_PREFIX = "day"
@@ -173,5 +204,9 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         private const val TOP_ID_SUFFIX = "TopArea"
         private const val BOTTOM_ID_PREFIX = "day"
         private const val BOTTOM_ID_SUFFIX = "BottomArea"
+        private const val PREFS_NAME = "calendar_widget_state"
+        private const val KEY_MONTH_OFFSET = "month_offset"
+        private const val ACTION_PREVIOUS_MONTH = "com.example.just_right_calendar.action.PREV_MONTH"
+        private const val ACTION_NEXT_MONTH = "com.example.just_right_calendar.action.NEXT_MONTH"
     }
 }
