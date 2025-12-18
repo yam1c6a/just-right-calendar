@@ -135,7 +135,7 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                 views.setTextViewText(numberId, dayNumber.toString())
                 views.setTextColor(numberId, context.getColor(textColor))
                 views.setTextViewText(markId, marksText)
-                views.setTextColor(markId, context.getColor(textColor))
+                views.setTextColor(markId, context.getColor(R.color.calendar_mark_text))
                 views.setInt(topAreaId, "setBackgroundColor", context.getColor(topColor))
                 views.setInt(bottomAreaId, "setBackgroundColor", context.getColor(bottomColor))
             } else {

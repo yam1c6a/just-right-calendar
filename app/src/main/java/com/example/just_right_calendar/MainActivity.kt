@@ -1,5 +1,6 @@
 package com.example.just_right_calendar
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,6 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
     private lateinit var calendarGrid: GridLayout
@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity() {
             renderCalendar()
         }
 
+        renderCalendar()
+    }
+
+    override fun onResume() {
+        super.onResume()
         renderCalendar()
     }
 
@@ -108,6 +113,7 @@ class MainActivity : AppCompatActivity() {
 
         val marks = CalendarRepository.getMarks(date)
         markText.text = marks.joinToString("") { it.symbol }
+        markText.setTextColor(ContextCompat.getColor(this, R.color.calendar_mark_text))
 
         val isToday = date == LocalDate.now()
         val isHoliday = CalendarRepository.isUserHoliday(date)
@@ -132,6 +138,15 @@ class MainActivity : AppCompatActivity() {
         topArea.setBackgroundColor(ContextCompat.getColor(this, topColor))
         bottomArea.setBackgroundColor(ContextCompat.getColor(this, bottomColor))
         dayNumber.setTextColor(ContextCompat.getColor(this, textColor))
+
+        view.setOnClickListener {
+            startActivity(
+                Intent(this, DayDetailActivity::class.java).putExtra(
+                    DayDetailActivity.EXTRA_DATE,
+                    date.toString(),
+                ),
+            )
+        }
 
         return view
     }
