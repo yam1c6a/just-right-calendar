@@ -85,9 +85,11 @@ class MainActivity : AppCompatActivity() {
         val topArea = view.findViewById<LinearLayout>(R.id.dayTopArea)
         val bottomArea = view.findViewById<LinearLayout>(R.id.dayBottomArea)
 
+        val horizontalPadding = dpToPx(32f)
+        val cellWidthPx = (resources.displayMetrics.widthPixels - horizontalPadding) / 7f
         val params = GridLayout.LayoutParams().apply {
             width = 0
-            height = 0
+            height = (cellWidthPx * 1.5f).toInt()
             columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
             rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
         }
@@ -111,11 +113,15 @@ class MainActivity : AppCompatActivity() {
         val dayOfWeek = date.dayOfWeek
 
         val topColor = when {
-            isToday -> R.color.calendar_today_bg
             isHoliday -> R.color.calendar_holiday_bg
             dayOfWeek == DayOfWeek.SUNDAY -> R.color.calendar_holiday_bg
             dayOfWeek == DayOfWeek.SATURDAY -> R.color.calendar_saturday_bg
             else -> R.color.calendar_default_day_bg
+        }
+        val bottomColor = if (isToday) {
+            R.color.calendar_today_bg
+        } else {
+            R.color.calendar_default_day_bg
         }
         val textColor = when (dayOfWeek) {
             DayOfWeek.SUNDAY -> R.color.calendar_sunday_text
@@ -123,9 +129,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         topArea.setBackgroundColor(ContextCompat.getColor(this, topColor))
-        bottomArea.setBackgroundColor(ContextCompat.getColor(this, R.color.calendar_default_day_bg))
+        bottomArea.setBackgroundColor(ContextCompat.getColor(this, bottomColor))
         dayNumber.setTextColor(ContextCompat.getColor(this, textColor))
 
         return view
+    }
+
+    private fun dpToPx(dp: Float): Int {
+        val density = resources.displayMetrics.density
+        return (dp * density).toInt()
     }
 }
