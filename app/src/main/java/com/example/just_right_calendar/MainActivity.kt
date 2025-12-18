@@ -14,6 +14,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
     private lateinit var calendarGrid: GridLayout
