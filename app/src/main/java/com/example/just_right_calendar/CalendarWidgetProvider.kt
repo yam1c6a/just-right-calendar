@@ -78,6 +78,7 @@ class CalendarWidgetProvider : AppWidgetProvider() {
 
     private fun buildRemoteViews(context: Context): RemoteViews? {
         Log.d(TAG, "buildRemoteViews start")
+        CalendarRepository.initialize(context.applicationContext)
         val packageName = context.packageName
         val numberIds = resolveIds(context, NUMBER_ID_PREFIX, NUMBER_ID_SUFFIX)
         val markIds = resolveIds(context, MARK_ID_PREFIX, MARK_ID_SUFFIX)
@@ -111,7 +112,8 @@ class CalendarWidgetProvider : AppWidgetProvider() {
             if (dayNumber in 1..daysInMonth) {
                 val date = yearMonth.atDay(dayNumber)
                 val dayOfWeek = date.dayOfWeek
-                val isHoliday = holidays.contains(date)
+                val isUserHoliday = CalendarRepository.isUserHoliday(date)
+                val isHoliday = isUserHoliday || holidays.contains(date)
                 val isToday = date == LocalDate.now()
                 val topColor = when {
                     isHoliday -> R.color.calendar_holiday_bg
@@ -128,10 +130,12 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                     isHoliday || dayOfWeek == DayOfWeek.SUNDAY -> R.color.calendar_sunday_text
                     else -> R.color.widget_text_primary
                 }
+                val marksText = CalendarRepository.getMarks(date).joinToString("") { it.symbol }
 
                 views.setTextViewText(numberId, dayNumber.toString())
                 views.setTextColor(numberId, context.getColor(textColor))
-                views.setTextViewText(markId, "")
+                views.setTextViewText(markId, marksText)
+                views.setTextColor(markId, context.getColor(textColor))
                 views.setInt(topAreaId, "setBackgroundColor", context.getColor(topColor))
                 views.setInt(bottomAreaId, "setBackgroundColor", context.getColor(bottomColor))
             } else {
