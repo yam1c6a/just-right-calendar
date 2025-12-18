@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
         val daysInMonth = currentMonth.lengthOfMonth()
         val startOffset = ((firstDay.dayOfWeek.value + 6) % 7)
 
+        val cellHeightPx = calculateCellHeight()
+
         repeat(42) { index ->
             val dayNumber = index - startOffset + 1
             val date = if (dayNumber in 1..daysInMonth) {
@@ -72,12 +74,12 @@ class MainActivity : AppCompatActivity() {
             } else {
                 null
             }
-            val dayView = createDayCell(date)
+            val dayView = createDayCell(date, cellHeightPx)
             calendarGrid.addView(dayView)
         }
     }
 
-    private fun createDayCell(date: LocalDate?): View {
+    private fun createDayCell(date: LocalDate?, cellHeightPx: Int): View {
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.day_cell, calendarGrid, false)
 
@@ -86,13 +88,11 @@ class MainActivity : AppCompatActivity() {
         val topArea = view.findViewById<LinearLayout>(R.id.dayTopArea)
         val bottomArea = view.findViewById<LinearLayout>(R.id.dayBottomArea)
 
-        val horizontalPadding = dpToPx(32f)
-        val cellWidthPx = (resources.displayMetrics.widthPixels - horizontalPadding) / 7f
         val params = GridLayout.LayoutParams().apply {
             width = 0
-            height = (cellWidthPx * 1.5f).toInt()
+            height = cellHeightPx
             columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-            rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+            rowSpec = GridLayout.spec(GridLayout.UNDEFINED)
         }
         view.layoutParams = params
 
@@ -134,6 +134,16 @@ class MainActivity : AppCompatActivity() {
         dayNumber.setTextColor(ContextCompat.getColor(this, textColor))
 
         return view
+    }
+
+    private fun calculateCellHeight(): Int {
+        val horizontalPadding = dpToPx(32f)
+        val columnWidth = if (calendarGrid.width > 0) {
+            calendarGrid.width / 7f
+        } else {
+            (resources.displayMetrics.widthPixels - horizontalPadding) / 7f
+        }
+        return (columnWidth * (3f / 2f)).toInt()
     }
 
     private fun dpToPx(dp: Float): Int {
