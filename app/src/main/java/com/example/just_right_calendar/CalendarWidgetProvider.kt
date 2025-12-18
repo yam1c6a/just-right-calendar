@@ -1,221 +1,111 @@
 package com.example.just_right_calendar
 
-import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
-import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
-import android.view.View
+import android.util.Log
 import android.widget.RemoteViews
-import androidx.core.content.ContextCompat
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.YearMonth
-import kotlin.math.abs
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class CalendarWidgetProvider : AppWidgetProvider() {
 
-    override fun onReceive(context: Context, intent: Intent) {
-        super.onReceive(context, intent)
-        when (intent.action) {
-            ACTION_PREV_MONTH -> handleMonthChange(context, intent, -1)
-            ACTION_NEXT_MONTH -> handleMonthChange(context, intent, 1)
-            ACTION_TODAY -> handleMonthChange(context, intent, null)
+    override fun onUpdate(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetIds: IntArray,
+    ) {
+        appWidgetIds.forEach { id ->
+            runCatching { updateWidget(context, appWidgetManager, id) }
+                .onFailure { Log.e(TAG, "Failed to update widget", it) }
         }
     }
 
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
-        super.onUpdate(context, appWidgetManager, appWidgetIds)
-        for (appWidgetId in appWidgetIds) {
-            updateWidget(context, appWidgetManager, appWidgetId)
+    override fun onAppWidgetOptionsChanged(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int,
+        newOptions: android.os.Bundle,
+    ) {
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
+        runCatching { updateWidget(context, appWidgetManager, appWidgetId) }
+            .onFailure { Log.e(TAG, "Failed to update widget on options change", it) }
+    }
+
+    private fun updateWidget(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int,
+    ) {
+        val remoteViews = buildRemoteViews(context)
+        if (remoteViews != null) {
+            appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
+        } else {
+            Log.e(TAG, "RemoteViews could not be built; skipping update")
         }
     }
 
-    override fun onDeleted(context: Context, appWidgetIds: IntArray) {
-        super.onDeleted(context, appWidgetIds)
-        for (appWidgetId in appWidgetIds) {
-            clearYearMonth(context, appWidgetId)
+    private fun buildRemoteViews(context: Context): RemoteViews? {
+        val packageName = context.packageName
+        val numberIds = resolveIds(context, NUMBER_ID_PREFIX, NUMBER_ID_SUFFIX)
+        val markIds = resolveIds(context, MARK_ID_PREFIX, MARK_ID_SUFFIX)
+
+        if (numberIds.isEmpty() || markIds.isEmpty()) {
+            Log.e(TAG, "Day view ids could not be resolved")
+            return null
         }
+
+        val calendar = Calendar.getInstance()
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        val displayMonth = (calendar.clone() as Calendar).apply { set(Calendar.DAY_OF_MONTH, 1) }
+
+        val daysInMonth = displayMonth.getActualMaximum(Calendar.DAY_OF_MONTH)
+        val startOffset = ((displayMonth.get(Calendar.DAY_OF_WEEK) + 5) % 7)
+
+        val views = RemoteViews(packageName, R.layout.widget_calendar)
+        val monthLabel = SimpleDateFormat("yyyy/MM", Locale.getDefault()).format(displayMonth.time)
+        views.setTextViewText(R.id.widgetMonthLabel, monthLabel)
+
+        repeat(42) { index ->
+            val numberId = numberIds.getOrNull(index) ?: return@repeat
+            val markId = markIds.getOrNull(index) ?: return@repeat
+
+            val dayNumber = index - startOffset + 1
+            if (dayNumber in 1..daysInMonth) {
+                views.setTextViewText(numberId, dayNumber.toString())
+                views.setTextViewText(markId, "")
+
+                if (dayNumber == currentDay) {
+                    views.setTextColor(numberId, context.getColor(R.color.widget_text_primary))
+                }
+            } else {
+                views.setTextViewText(numberId, "")
+                views.setTextViewText(markId, "")
+            }
+        }
+
+        return views
     }
 
-    private fun handleMonthChange(context: Context, intent: Intent, deltaMonths: Long?) {
-        val appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-        if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) return
-
-        val manager = AppWidgetManager.getInstance(context)
-        val currentMonth = loadYearMonth(context, appWidgetId)
-        val updatedMonth = deltaMonths?.let { currentMonth.plusMonths(it) } ?: YearMonth.now()
-        saveYearMonth(context, appWidgetId, updatedMonth)
-        updateWidget(context, manager, appWidgetId)
+    private fun resolveIds(context: Context, prefix: String, suffix: String): List<Int> {
+        val packageName = context.packageName
+        return (1..42).mapNotNull { index ->
+            val id = context.resources.getIdentifier("$prefix$index$suffix", "id", packageName)
+            if (id == 0) {
+                Log.w(TAG, "Resource id not found for $prefix$index$suffix")
+                null
+            } else {
+                id
+            }
+        }
     }
 
     companion object {
-        private const val PREF_NAME = "calendar_widget_prefs"
-        private const val PREF_MONTH_PREFIX = "widget_month_"
-
-        const val ACTION_PREV_MONTH = "com.example.just_right_calendar.widget.PREV_MONTH"
-        const val ACTION_NEXT_MONTH = "com.example.just_right_calendar.widget.NEXT_MONTH"
-        const val ACTION_TODAY = "com.example.just_right_calendar.widget.TODAY"
-
-        private const val REQUEST_PREV = 1
-        private const val REQUEST_NEXT = 2
-        private const val REQUEST_TODAY = 3
-
-        fun requestUpdate(context: Context) {
-            val manager = AppWidgetManager.getInstance(context)
-            val ids = manager.getAppWidgetIds(ComponentName(context, CalendarWidgetProvider::class.java))
-            for (id in ids) {
-                updateWidget(context, manager, id)
-            }
-        }
-
-        fun loadYearMonth(context: Context, appWidgetId: Int): YearMonth {
-            val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-            val stored = prefs.getString("$PREF_MONTH_PREFIX$appWidgetId", null)
-            return stored?.let { YearMonth.parse(it) } ?: YearMonth.now()
-        }
-
-        fun saveYearMonth(context: Context, appWidgetId: Int, yearMonth: YearMonth) {
-            val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-            prefs.edit().putString("$PREF_MONTH_PREFIX$appWidgetId", yearMonth.toString()).apply()
-        }
-
-        fun clearYearMonth(context: Context, appWidgetId: Int) {
-            val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-            prefs.edit().remove("$PREF_MONTH_PREFIX$appWidgetId").apply()
-        }
-
-        private fun buildIdArray(context: Context, suffix: String = ""): IntArray {
-            val resources = context.resources
-            val packageName = context.packageName
-            return IntArray(42) { index ->
-                resources.getIdentifier("day${index + 1}$suffix", "id", packageName)
-            }
-        }
-
-        private fun createActionPendingIntent(
-            context: Context,
-            appWidgetId: Int,
-            action: String,
-            requestCodeOffset: Int
-        ): PendingIntent {
-            val intent = Intent(context, CalendarWidgetProvider::class.java).apply {
-                this.action = action
-                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-            }
-            return PendingIntent.getBroadcast(
-                context,
-                appWidgetId * 10 + requestCodeOffset,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-        }
-
-        fun updateWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
-            CalendarRepository.initialize(context.applicationContext)
-
-            val dayContainerIds = buildIdArray(context)
-            val dayTopIds = buildIdArray(context, "Top")
-            val dayBottomIds = buildIdArray(context, "Bottom")
-            val dayNumberIds = buildIdArray(context, "Number")
-            val dayMarkIds = buildIdArray(context, "Mark")
-
-            val idArrays = listOf(dayContainerIds, dayTopIds, dayBottomIds, dayNumberIds, dayMarkIds)
-            if (idArrays.any { array -> array.any { it == 0 } }) {
-                return
-            }
-
-            val views = RemoteViews(context.packageName, R.layout.widget_calendar)
-            val yearMonth = loadYearMonth(context, appWidgetId)
-            val firstDayOfMonth = yearMonth.atDay(1)
-            val leadingEmpty = (firstDayOfMonth.dayOfWeek.value + 6) % 7
-            val today = LocalDate.now()
-
-            views.setTextViewText(R.id.widgetMonthLabel, context.getString(R.string.month_format, yearMonth.year, yearMonth.monthValue))
-
-            val holidays = JapaneseHolidayCalculator.holidaysForMonth(yearMonth)
-
-            val openMainIntent = PendingIntent.getActivity(
-                context,
-                0,
-                Intent(context, MainActivity::class.java),
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-            views.setOnClickPendingIntent(R.id.widgetRoot, openMainIntent)
-
-            views.setOnClickPendingIntent(
-                R.id.widgetPrevButton,
-                createActionPendingIntent(context, appWidgetId, ACTION_PREV_MONTH, REQUEST_PREV)
-            )
-            views.setOnClickPendingIntent(
-                R.id.widgetNextButton,
-                createActionPendingIntent(context, appWidgetId, ACTION_NEXT_MONTH, REQUEST_NEXT)
-            )
-            views.setOnClickPendingIntent(
-                R.id.widgetTodayButton,
-                createActionPendingIntent(context, appWidgetId, ACTION_TODAY, REQUEST_TODAY)
-            )
-
-            for (index in dayContainerIds.indices) {
-                val dayNumber = index - leadingEmpty + 1
-                val containerId = dayContainerIds[index]
-                val topId = dayTopIds[index]
-                val bottomId = dayBottomIds[index]
-                val numberId = dayNumberIds[index]
-                val markId = dayMarkIds[index]
-
-                if (dayNumber in 1..yearMonth.lengthOfMonth()) {
-                    val date = yearMonth.atDay(dayNumber)
-                    views.setViewVisibility(containerId, View.VISIBLE)
-                    views.setTextViewText(numberId, dayNumber.toString())
-
-                    val isUserHoliday = CalendarRepository.isUserHoliday(date)
-                    val isHoliday = isUserHoliday || holidays.containsKey(date) || date.dayOfWeek == DayOfWeek.SUNDAY
-                    val isSaturday = date.dayOfWeek == DayOfWeek.SATURDAY
-                    val topColor = when {
-                        isHoliday -> ContextCompat.getColor(context, R.color.calendar_holiday_bg)
-                        isSaturday -> ContextCompat.getColor(context, R.color.calendar_saturday_bg)
-                        else -> ContextCompat.getColor(context, R.color.calendar_default_day_bg)
-                    }
-                    views.setInt(topId, "setBackgroundColor", topColor)
-
-                    val bottomColor = if (date == today) {
-                        ContextCompat.getColor(context, R.color.calendar_today_bg)
-                    } else {
-                        ContextCompat.getColor(context, R.color.calendar_default_day_bg)
-                    }
-                    views.setInt(bottomId, "setBackgroundColor", bottomColor)
-
-                    val marks = CalendarRepository.getMarks(date)
-                    val markSymbol = marks.firstOrNull()?.symbol.orEmpty()
-                    views.setTextViewText(markId, markSymbol)
-                    views.setViewVisibility(markId, if (markSymbol.isEmpty()) View.GONE else View.VISIBLE)
-                    views.setTextColor(numberId, ContextCompat.getColor(context, R.color.text_primary))
-
-                    val detailRequestCode = appWidgetId * 100000 + (abs(date.hashCode()) % 100000)
-                    val detailIntent = Intent(context, DayDetailActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        putExtra(DayDetailActivity.EXTRA_DATE, date.toString())
-                        putExtra("date", date.toString())
-                    }
-                    val pendingDetail = PendingIntent.getActivity(
-                        context,
-                        detailRequestCode,
-                        detailIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-                    )
-                    views.setOnClickPendingIntent(containerId, pendingDetail)
-                } else {
-                    views.setViewVisibility(containerId, View.INVISIBLE)
-                    views.setTextViewText(numberId, "")
-                    views.setTextViewText(markId, "")
-                    views.setViewVisibility(markId, View.GONE)
-                    views.setOnClickPendingIntent(containerId, openMainIntent)
-                }
-            }
-
-            appWidgetManager.updateAppWidget(appWidgetId, views)
-        }
+        private const val TAG = "CalendarWidgetProvider"
+        private const val NUMBER_ID_PREFIX = "day"
+        private const val NUMBER_ID_SUFFIX = "Number"
+        private const val MARK_ID_PREFIX = "day"
+        private const val MARK_ID_SUFFIX = "Mark"
     }
 }
