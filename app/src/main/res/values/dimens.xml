@@ -4,6 +4,6 @@
     <dimen name="mark_bottom_margin">-4dp</dimen>
     <dimen name="mark_text_default_size">29sp</dimen>
     <dimen name="day_bottom_area_height">32dp</dimen>
-    <dimen name="widget_mark_text_size">26sp</dimen>
-    <dimen name="widget_day_height">72dp</dimen>
+    <dimen name="widget_mark_text_size">14sp</dimen>
+    <dimen name="widget_day_height">36dp</dimen>
 </resources>
