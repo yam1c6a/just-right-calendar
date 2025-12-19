@@ -20,7 +20,7 @@
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:paddingTop="1dp"
+            android:paddingTop="0dp"
             android:paddingBottom="1dp">
 
             <TextView
@@ -30,6 +30,7 @@
                 android:gravity="center"
                 android:textColor="@color/text_primary"
                 android:textSize="13sp"
+                android:includeFontPadding="false"
                 android:textStyle="bold" />
         </LinearLayout>
 
