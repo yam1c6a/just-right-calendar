@@ -20,8 +20,8 @@
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp">
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
 
             <TextView
                 android:id="@+id/dayNumber"
