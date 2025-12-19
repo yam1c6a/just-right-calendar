@@ -1,4 +1,4 @@
-package com.example.just_right_calendar
+package com.yam1c6a.justrightcalendar
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider

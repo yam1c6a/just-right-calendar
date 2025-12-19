@@ -1,4 +1,4 @@
-package com.example.just_right_calendar
+package com.yam1c6a.justrightcalendar
 
 enum class MarkType(val symbol: String) {
     CIRCLE("〇"),

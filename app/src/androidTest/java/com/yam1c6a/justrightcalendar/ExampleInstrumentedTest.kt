@@ -1,4 +1,4 @@
-package com.example.just_right_calendar
+package com.yam1c6a.justrightcalendar
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

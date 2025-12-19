@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.just_right_calendar"
+    namespace = "com.yam1c6a.justrightcalendar"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.just_right_calendar"
+        applicationId = "com.yam1c6a.justrightcalendar"
         minSdk = 34
         targetSdk = 36
         versionCode = 1

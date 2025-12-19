@@ -1,4 +1,4 @@
-package com.example.just_right_calendar
+package com.yam1c6a.justrightcalendar
 
 import android.content.Intent
 import android.os.Bundle
