@@ -2,7 +2,9 @@ package com.example.just_right_calendar
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
 import java.time.DayOfWeek
@@ -99,6 +101,16 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         val startOffset = ((displayMonth.get(Calendar.DAY_OF_WEEK) + 5) % 7)
 
         val views = RemoteViews(packageName, R.layout.widget_calendar)
+        val launchIntent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            launchIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+        views.setOnClickPendingIntent(R.id.widgetRoot, pendingIntent)
         val monthLabel = SimpleDateFormat("yyyy/MM", Locale.getDefault()).format(displayMonth.time)
         views.setTextViewText(R.id.widgetMonthLabel, monthLabel)
 
