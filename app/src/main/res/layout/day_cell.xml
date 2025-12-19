@@ -20,8 +20,8 @@
             android:gravity="center"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp">
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
 
             <TextView
                 android:id="@+id/dayNumber"
@@ -42,8 +42,8 @@
             android:orientation="vertical"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:paddingTop="1dp"
-            android:paddingBottom="3dp">
+            android:paddingTop="0dp"
+            android:paddingBottom="2dp">
 
             <TextView
                 android:id="@+id/markText"
