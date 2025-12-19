@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         val firstDay = currentMonth.atDay(1)
         val daysInMonth = currentMonth.lengthOfMonth()
         val startOffset = ((firstDay.dayOfWeek.value + 6) % 7)
+        val holidays = JapaneseHolidayCalculator.holidaysForMonth(currentMonth)
 
         val cellHeightPx = calculateCellHeight()
 
@@ -79,12 +80,16 @@ class MainActivity : AppCompatActivity() {
             } else {
                 null
             }
-            val dayView = createDayCell(date, cellHeightPx)
+            val dayView = createDayCell(date, cellHeightPx, holidays)
             calendarGrid.addView(dayView)
         }
     }
 
-    private fun createDayCell(date: LocalDate?, cellHeightPx: Int): View {
+    private fun createDayCell(
+        date: LocalDate?,
+        cellHeightPx: Int,
+        holidays: Map<LocalDate, String>,
+    ): View {
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.day_cell, calendarGrid, false)
 
@@ -116,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         markText.setTextColor(ContextCompat.getColor(this, R.color.calendar_mark_text))
 
         val isToday = date == LocalDate.now()
-        val isHoliday = CalendarRepository.isUserHoliday(date)
+        val isHoliday = CalendarRepository.isUserHoliday(date) || holidays.containsKey(date)
         val dayOfWeek = date.dayOfWeek
 
         val topColor = when {
