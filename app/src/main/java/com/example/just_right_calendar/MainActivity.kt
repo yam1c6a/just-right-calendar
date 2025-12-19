@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             (resources.displayMetrics.widthPixels - horizontalPadding) / 7f
         }
-        return (columnWidth * (3f / 2f)).toInt()
+        return columnWidth.toInt()
     }
 
     private fun dpToPx(dp: Float): Int {
