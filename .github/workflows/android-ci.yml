@@ -34,9 +34,26 @@ jobs:
       - name: Build Debug APK
         run: ./gradlew :app:assembleDebug --stacktrace
 
+      - name: Rename APK (Debug)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Extract versionName from app/build.gradle.kts (expects: versionName = "0.9.0")
+          VERSION_NAME=$(grep -m1 'versionName\s*=' app/build.gradle.kts | sed -E 's/.*"([^"]+)".*/\1/')
+
+          OUT_DIR="dist"
+          mkdir -p "$OUT_DIR"
+
+          SRC="app/build/outputs/apk/debug/app-debug.apk"
+          DST="$OUT_DIR/just-right-calendar-v${VERSION_NAME}-debug.apk"
+
+          cp "$SRC" "$DST"
+          echo "Renamed: $DST"
+
       - name: Upload Debug APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: just-right-calendar-debug-apk
+          path: dist/just-right-calendar-*.apk
           if-no-files-found: error

@@ -29,16 +29,28 @@ jobs:
       - name: Setup Gradle cache
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build Debug APK
-        run: ./gradlew :app:assembleDebug --stacktrace
+      - name: Build Release APK
+        run: ./gradlew :app:assembleRelease --stacktrace
 
-      - name: Collect APK
+      - name: Rename APK (Release)
+        shell: bash
         run: |
-          mkdir -p dist
-          cp app/build/outputs/apk/debug/*.apk dist/
+          set -euo pipefail
 
-      - name: Create GitHub Release
+          # Extract versionName from app/build.gradle.kts (expects: versionName = "0.9.0")
+          VERSION_NAME=$(grep -m1 'versionName\s*=' app/build.gradle.kts | sed -E 's/.*"([^"]+)".*/\1/')
+
+          OUT_DIR="dist"
+          mkdir -p "$OUT_DIR"
+
+          SRC="app/build/outputs/apk/release/app-release.apk"
+          DST="$OUT_DIR/just-right-calendar-v${VERSION_NAME}.apk"
+
+          cp "$SRC" "$DST"
+          echo "Prepared: $DST"
+
+      - name: Create GitHub Release (attach APK)
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*.apk
-          generate_release_notes: true
+          files: dist/just-right-calendar-*.apk
+          generate_release_notes: false
