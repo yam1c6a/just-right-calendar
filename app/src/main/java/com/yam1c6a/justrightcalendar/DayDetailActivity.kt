@@ -60,6 +60,8 @@ class DayDetailActivity : AppCompatActivity() {
             CalendarRepository.saveMarks(date, selectedMarks)
             CalendarRepository.saveHoliday(date, holidayToggle.isChecked)
 
+            CalendarWidgetProvider.requestWidgetUpdate(applicationContext)
+
             finish()
         }
     }
