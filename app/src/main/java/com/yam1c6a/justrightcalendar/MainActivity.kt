@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         renderCalendar()
+        CalendarWidgetProvider.requestWidgetUpdate(applicationContext)
     }
 
     private fun renderCalendar() {

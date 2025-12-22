@@ -1,15 +1,19 @@
 package com.yam1c6a.justrightcalendar
 
+import android.app.PendingIntent
+import android.app.AlarmManager
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.ComponentName
 import android.util.Log
 import android.widget.RemoteViews
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.ZonedDateTime
+import java.time.temporal.ChronoUnit
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -29,18 +33,42 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                 Log.e(TAG, "Failed to update widget id=$id", e)
             }
         }
+        try {
+            scheduleMidnightUpdate(context)
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to schedule midnight update", e)
+        }
         Log.d(TAG, "onUpdate end")
     }
 
     override fun onReceive(context: Context, intent: android.content.Intent) {
         Log.d(TAG, "onReceive start action=${intent.action}")
         try {
-            super.onReceive(context, intent)
+            when (intent.action) {
+                ACTION_MIDNIGHT_UPDATE -> {
+                    updateAllWidgets(context)
+                    scheduleMidnightUpdate(context)
+                }
+
+                ACTION_FORCE_UPDATE -> updateAllWidgets(context)
+                else -> super.onReceive(context, intent)
+            }
         } catch (e: Exception) {
             Log.e(TAG, "onReceive error", e)
             return
         }
         Log.d(TAG, "onReceive end action=${intent.action}")
+    }
+
+    override fun onEnabled(context: Context) {
+        super.onEnabled(context)
+        Log.d(TAG, "onEnabled")
+        try {
+            updateAllWidgets(context)
+            scheduleMidnightUpdate(context)
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed during onEnabled", e)
+        }
     }
 
     override fun onAppWidgetOptionsChanged(
@@ -162,6 +190,40 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         return views
     }
 
+    private fun updateAllWidgets(context: Context) {
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val componentName = ComponentName(context, CalendarWidgetProvider::class.java)
+        val widgetIds = appWidgetManager.getAppWidgetIds(componentName)
+        if (widgetIds.isEmpty()) {
+            Log.d(TAG, "No widgets to update")
+            return
+        }
+        Log.d(TAG, "Updating all widgets ids=${widgetIds.joinToString()}")
+        widgetIds.forEach { id ->
+            try {
+                updateWidget(context, appWidgetManager, id)
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to update widget id=$id", e)
+            }
+        }
+        scheduleMidnightUpdate(context)
+    }
+
+    private fun scheduleMidnightUpdate(context: Context) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager ?: return
+        val now = ZonedDateTime.now()
+        val nextMidnight = now.truncatedTo(ChronoUnit.DAYS).plusDays(1)
+        val triggerAtMillis = nextMidnight.toInstant().toEpochMilli()
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            MIDNIGHT_REQUEST_CODE,
+            Intent(context, CalendarWidgetProvider::class.java).apply { action = ACTION_MIDNIGHT_UPDATE },
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent)
+        Log.d(TAG, "Midnight update scheduled at $nextMidnight")
+    }
+
     private fun resolveIds(context: Context, prefix: String, suffix: String): List<Int> {
         val packageName = context.packageName
         return (1..42).mapNotNull { index ->
@@ -185,5 +247,22 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         private const val TOP_ID_SUFFIX = "TopArea"
         private const val BOTTOM_ID_PREFIX = "day"
         private const val BOTTOM_ID_SUFFIX = "BottomArea"
+        private const val ACTION_MIDNIGHT_UPDATE = "com.yam1c6a.justrightcalendar.action.MIDNIGHT_UPDATE"
+        private const val ACTION_FORCE_UPDATE = "com.yam1c6a.justrightcalendar.action.FORCE_UPDATE"
+        private const val MIDNIGHT_REQUEST_CODE = 1001
+
+        fun requestWidgetUpdate(context: Context) {
+            val appWidgetManager = AppWidgetManager.getInstance(context)
+            val componentName = ComponentName(context, CalendarWidgetProvider::class.java)
+            val widgetIds = appWidgetManager.getAppWidgetIds(componentName)
+            if (widgetIds.isEmpty()) {
+                Log.d(TAG, "No widgets found for requestWidgetUpdate")
+                return
+            }
+            val updateIntent = Intent(context, CalendarWidgetProvider::class.java).apply {
+                action = ACTION_FORCE_UPDATE
+            }
+            context.sendBroadcast(updateIntent)
+        }
     }
 }
