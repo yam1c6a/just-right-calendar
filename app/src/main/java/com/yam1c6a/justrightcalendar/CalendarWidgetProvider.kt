@@ -209,21 +209,6 @@ class CalendarWidgetProvider : AppWidgetProvider() {
         scheduleMidnightUpdate(context)
     }
 
-    private fun scheduleMidnightUpdate(context: Context) {
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager ?: return
-        val now = ZonedDateTime.now()
-        val nextMidnight = now.truncatedTo(ChronoUnit.DAYS).plusDays(1)
-        val triggerAtMillis = nextMidnight.toInstant().toEpochMilli()
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            MIDNIGHT_REQUEST_CODE,
-            Intent(context, CalendarWidgetProvider::class.java).apply { action = ACTION_MIDNIGHT_UPDATE },
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
-        )
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent)
-        Log.d(TAG, "Midnight update scheduled at $nextMidnight")
-    }
-
     private fun resolveIds(context: Context, prefix: String, suffix: String): List<Int> {
         val packageName = context.packageName
         return (1..42).mapNotNull { index ->
@@ -263,6 +248,21 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                 action = ACTION_FORCE_UPDATE
             }
             context.sendBroadcast(updateIntent)
+        }
+
+        fun scheduleMidnightUpdate(context: Context) {
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager ?: return
+            val now = ZonedDateTime.now()
+            val nextMidnight = now.truncatedTo(ChronoUnit.DAYS).plusDays(1)
+            val triggerAtMillis = nextMidnight.toInstant().toEpochMilli()
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                MIDNIGHT_REQUEST_CODE,
+                Intent(context, CalendarWidgetProvider::class.java).apply { action = ACTION_MIDNIGHT_UPDATE },
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+            )
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent)
+            Log.d(TAG, "Midnight update scheduled at $nextMidnight")
         }
     }
 }
