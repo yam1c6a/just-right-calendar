@@ -44,25 +44,41 @@
             android:dividerPadding="8dp">
 
             <CheckBox
-                android:id="@+id/markCircle"
+                android:id="@+id/markDoubleCircle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="〇"
+                android:text="◎"
                 android:textSize="18sp" />
-
-            <CheckBox
-                android:id="@+id/markCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✓"
-                android:textSize="18sp"
-                android:layout_marginStart="16dp" />
 
             <CheckBox
                 android:id="@+id/markStar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="☆"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp" />
+
+            <CheckBox
+                android:id="@+id/markCircle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="〇"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp" />
+
+            <CheckBox
+                android:id="@+id/markTriangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="△"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp" />
+
+            <CheckBox
+                android:id="@+id/markCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✓"
                 android:textSize="18sp"
                 android:layout_marginStart="16dp" />
         </LinearLayout>

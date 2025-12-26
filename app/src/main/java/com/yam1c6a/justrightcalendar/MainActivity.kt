@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity() {
         dayNumber.text = date.dayOfMonth.toString()
 
         val marks = CalendarRepository.getMarks(date)
-        markText.text = marks.joinToString("") { it.symbol }
+        markText.text = MarkType.orderedMarks(marks).joinToString("") { it.symbol }
         markText.setTextColor(ContextCompat.getColor(this, R.color.calendar_mark_text))
 
         val isToday = date == LocalDate.now()

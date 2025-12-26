@@ -170,7 +170,7 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                     isHoliday || dayOfWeek == DayOfWeek.SUNDAY -> R.color.calendar_sunday_text
                     else -> R.color.widget_text_primary
                 }
-                val marksText = CalendarRepository.getMarks(date).joinToString("") { it.symbol }
+                val marksText = MarkType.orderedMarks(CalendarRepository.getMarks(date)).joinToString("") { it.symbol }
 
                 views.setTextViewText(numberId, dayNumber.toString())
                 views.setTextColor(numberId, context.getColor(textColor))

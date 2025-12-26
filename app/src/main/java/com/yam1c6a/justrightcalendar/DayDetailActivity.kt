@@ -26,9 +26,11 @@ class DayDetailActivity : AppCompatActivity() {
 
         val dateLabel: TextView = findViewById(R.id.dateLabel)
         val dayTypeLabel: TextView = findViewById(R.id.dayTypeLabel)
+        val markDoubleCircle: CheckBox = findViewById(R.id.markDoubleCircle)
         val markCircle: CheckBox = findViewById(R.id.markCircle)
         val markCheck: CheckBox = findViewById(R.id.markCheck)
         val markStar: CheckBox = findViewById(R.id.markStar)
+        val markTriangle: CheckBox = findViewById(R.id.markTriangle)
         val holidayToggle: SwitchCompat = findViewById(R.id.holidayToggle)
         val saveButton: Button = findViewById(R.id.saveButton)
 
@@ -37,9 +39,11 @@ class DayDetailActivity : AppCompatActivity() {
         dateLabel.text = "${date.format(formatter)} (${dayOfWeek})"
 
         val marks = CalendarRepository.getMarks(date)
+        markDoubleCircle.isChecked = marks.contains(MarkType.DOUBLE_CIRCLE)
         markCircle.isChecked = marks.contains(MarkType.CIRCLE)
         markCheck.isChecked = marks.contains(MarkType.CHECK)
         markStar.isChecked = marks.contains(MarkType.STAR)
+        markTriangle.isChecked = marks.contains(MarkType.TRIANGLE)
 
         val holidayName = JapaneseHolidayCalculator.holidaysForMonth(YearMonth.of(date.year, date.month))[date]
         val isUserHoliday = CalendarRepository.isUserHoliday(date)
@@ -53,9 +57,11 @@ class DayDetailActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             val selectedMarks = mutableSetOf<MarkType>()
+            if (markDoubleCircle.isChecked) selectedMarks.add(MarkType.DOUBLE_CIRCLE)
             if (markCircle.isChecked) selectedMarks.add(MarkType.CIRCLE)
             if (markCheck.isChecked) selectedMarks.add(MarkType.CHECK)
             if (markStar.isChecked) selectedMarks.add(MarkType.STAR)
+            if (markTriangle.isChecked) selectedMarks.add(MarkType.TRIANGLE)
 
             CalendarRepository.saveMarks(date, selectedMarks)
             CalendarRepository.saveHoliday(date, holidayToggle.isChecked)

@@ -36,7 +36,8 @@ object CalendarRepository {
         if (marks.isEmpty()) {
             editor.remove(marksKey(date))
         } else {
-            editor.putString(marksKey(date), marks.joinToString(",") { it.name })
+            val orderedMarks = MarkType.orderedMarks(marks)
+            editor.putString(marksKey(date), orderedMarks.joinToString(",") { it.name })
         }
         editor.apply()
     }
