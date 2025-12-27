@@ -261,8 +261,13 @@ class CalendarWidgetProvider : AppWidgetProvider() {
                 Intent(context, CalendarWidgetProvider::class.java).apply { action = ACTION_MIDNIGHT_UPDATE },
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
             )
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent)
-            Log.d(TAG, "Midnight update scheduled at $nextMidnight")
+            if (alarmManager.canScheduleExactAlarms()) {
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent)
+                Log.d(TAG, "Midnight update scheduled exactly at $nextMidnight")
+            } else {
+                alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent)
+                Log.w(TAG, "Exact alarm not allowed; scheduled inexact midnight update at $nextMidnight")
+            }
         }
     }
 }
