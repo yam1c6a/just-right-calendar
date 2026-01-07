@@ -37,7 +37,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Extract versionName from app/build.gradle.kts (expects: versionName = "0.9.0")
+          # Extract versionName from app/build.gradle.kts (expects: versionName = "1.0.0")
           VERSION_NAME=$(grep -m1 'versionName\s*=' app/build.gradle.kts | sed -E 's/.*"([^"]+)".*/\1/')
 
           OUT_DIR="dist"
