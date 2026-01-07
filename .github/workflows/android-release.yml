@@ -37,17 +37,20 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Extract versionName from app/build.gradle.kts (expects: versionName = "1.0.0")
+          # Extract versionName from app/build.gradle.kts (expects: versionName = "0.9.0")
           VERSION_NAME=$(grep -m1 'versionName\s*=' app/build.gradle.kts | sed -E 's/.*"([^"]+)".*/\1/')
 
           OUT_DIR="dist"
           mkdir -p "$OUT_DIR"
 
-          SRC="app/build/outputs/apk/release/app-release.apk"
+          # Find release APK (works for app-release.apk / app-release-unsigned.apk etc.)
+          APK_DIR="app/build/outputs/apk/release"
+          SRC="$(ls -1 "$APK_DIR"/*.apk | head -n 1)"
+
           DST="$OUT_DIR/just-right-calendar-v${VERSION_NAME}.apk"
 
           cp "$SRC" "$DST"
-          echo "Prepared: $DST"
+          echo "Prepared: $DST (from $SRC)"
 
       - name: Create GitHub Release (attach APK)
         uses: softprops/action-gh-release@v2
